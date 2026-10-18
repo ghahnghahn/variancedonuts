@@ -25,3 +25,5 @@ Imports:
 Config/roxygen2/version: 8.1.1
 LazyData: true
 VignetteBuilder: knitr
+URL: https://github.com/ghahnghahn/variancedonuts
+BugReports: https://github.com/ghahnghahn/variancedonuts/issues
