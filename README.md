@@ -1,5 +1,9 @@
 # variancedonuts
 
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/ghahnghahn/variancedonuts/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ghahnghahn/variancedonuts/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
+
 Square-donut pictures of the variance.
 
 The identity
