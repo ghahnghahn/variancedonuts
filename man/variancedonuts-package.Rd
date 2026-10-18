@@ -6,11 +6,27 @@
 \alias{variancedonuts-package}
 \title{variancedonuts: square-donut pictures of the variance}
 \description{
-Draws the sum of squared values as a square donut. The hole comes from the
-mean, and the dough is the sum of squared deviations.
+Draws the identity \code{sum(x^2) = n * mean^2 + sum((x - mean)^2)} as a square
+donut. The whole donut is the sum of squared values, the hole comes from
+the mean, and the dough is the sum of squared deviations. Dividing the dough
+by \code{n} or \code{n - 1} gives the population or sample variance.
+}
+\details{
+Main functions:
+\itemize{
+\item \code{\link[=donut_stats]{donut_stats()}}: the numbers behind the picture.
+\item \code{\link[=donut_frame]{donut_frame()}}: one donut.
+\item \code{\link[=donut_compare]{donut_compare()}}: two donuts drawn to one scale.
+\item \code{\link[=donut_schemes]{donut_schemes()}}: the available color schemes.
+}
 }
 \author{
-\strong{Maintainer}: Eugene D. Hahn \email{maintainer@example.com} [copyright holder]
+\strong{Maintainer}: Eugene D. Hahn \email{edhahn@salisbury.edu} [copyright holder]
+
+Authors:
+\itemize{
+  \item Eugene D. Hahn \email{edhahn@salisbury.edu} [copyright holder]
+}
 
 }
 \keyword{internal}
