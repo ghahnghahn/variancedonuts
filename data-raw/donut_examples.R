@@ -10,7 +10,7 @@ donut_examples <- list(
   example_minus_3  = example - 3,           # paper Figure 3: mean 1
   berliner         = example - 4,           # paper Figure 1: mean 0, no hole
   example_plus_2   = example + 2,           # Excel preset: same dough, larger mean
-  example_plus_100 = example + 100,         # same dough, a hole far bigger than the dough
+  example_plus_100 = example + 100,         # same dough, a mean far larger than the spread
   small_mean       = c(-4, -2, 0, 2, 9),    # dough 100, hole 5
   glaze_thin       = c(3.8, 3.9, 4.0, 4.1, 4.2)  # dough 0.1, hole 80
 )

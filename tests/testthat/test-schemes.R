@@ -42,7 +42,7 @@ test_that("color = 1: golden dough, crust edge drawn last, no stripe", {
   r <- plot_rects(donut_frame(c(1, 2, 3, 5, 9), color = 1, show_sigma = FALSE))
   expect_equal(r$fill[1], GOLD)                       # dough fill first
   expect_true(is.na(r$fill[2]) && r$colour[2] == CRUST) # crust outline drawn over it
-  expect_false(any(r$fill %in% c(PINK, WHITE)))      # the hole is "white", not a stripe
+  expect_false(any(r$fill %in% c(PINK, WHITE)))      # the empty center is white fill, not a stripe
   expect_equal(nrow(r), 3)                            # fill, outline, hole
 })
 
@@ -58,7 +58,7 @@ test_that("stripe sits in the middle third of the dough band (Example)", {
     expect_equal(nrow(inner), 1, info = paste("scheme", cl[[1]]))
     # stripe is centred on the donut
     expect_equal((stripe$xmin + stripe$xmax) / 2, s / 2, tolerance = 1e-12)
-    # the hole (white, grey border) is still the last rectangle and has the right side
+    # the empty center (white, gray border) is still the last rectangle and has the right side
     expect_equal(r$side[nrow(r)], h, tolerance = 1e-12)
     expect_equal(r$colour[nrow(r)], "grey80")
   }

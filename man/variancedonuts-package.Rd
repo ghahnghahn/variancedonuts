@@ -20,6 +20,14 @@ Main functions:
 \item \code{\link[=donut_schemes]{donut_schemes()}}: the available color schemes.
 }
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/ghahnghahn/variancedonuts}
+  \item Report bugs at \url{https://github.com/ghahnghahn/variancedonuts/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Eugene D. Hahn \email{edhahn@salisbury.edu} [copyright holder]
 

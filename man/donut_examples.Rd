@@ -16,7 +16,7 @@ hole. This is called a Berliner, an all-dough pastry that is similar to a
 donut.}
 \item{example_plus_2}{The Example plus 2. Same dough, larger mean.}
 \item{example_plus_100}{The Example plus 100. Same dough again, but the
-hole is so big that the dough is a thin rim.}
+mean is so large that the dough is a thin rim.}
 \item{small_mean}{\code{c(-4, -2, 0, 2, 9)}. Dough 100 around a hole of 5.}
 \item{glaze_thin}{\code{c(3.8, 3.9, 4.0, 4.1, 4.2)}. Dough 0.1 around a hole
 of 80: the shortcut formula's danger zone in miniature.}
