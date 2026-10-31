@@ -1,0 +1,220 @@
+---
+title: "Getting started with square donuts"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting started with square donuts}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  dev = "png",
+  fig.width = 6.5,
+  fig.height = 4,
+  fig.retina = 1,
+  out.width = "100%"
+)
+```
+
+```{r setup}
+library(variancedonuts)
+```
+
+## The idea
+
+When finding the variance, there is a key identity involved which is:
+
+    sum(x^2) = n * mean^2 + sum((x - mean)^2)
+
+The last term is used in most variance formulas. This package draws all three
+terms as a square donut. The **whole donut** has area
+`sum(x^2)`. The **hole** has area `n * mean^2`. What is left, the **dough**, has
+area `sum((x - mean)^2)`, the sum of squared deviations. The variance is the
+dough, divided up.
+
+## The Example
+
+The Example data are five numbers.
+
+```{r}
+x <- donut_examples$example
+x
+donut_stats(x)
+```
+
+The whole donut is 120, the hole is 80, and the dough is 40.
+
+```{r}
+donut_frame(x)
+```
+
+The labels give the area and side length of the whole donut and of the hole.
+The solid square on the right is a **Berliner**, an all-dough pastry similar
+to a donut. It holds exactly the same 40 units of dough, with no hole.
+
+## Dividing the dough
+
+The last line of the picture divides the dough. Divide by `n` for the
+population variance and by `n - 1` for the sample variance:
+
+```{r}
+st <- donut_stats(x)
+st$ss_dev / st$n          # population variance
+st$ss_dev / (st$n - 1)    # sample variance
+var(x)                    # R's var() divides by n - 1
+```
+
+The two variances use the same dough. They differ only in what it is divided
+by. The paper calls this choice the baking time.
+
+## Same dough, different donuts
+
+Subtracting 2 from every value moves the mean, so the hole shrinks. The dough
+stays the same, so the variance does too.
+
+```{r}
+donut_compare(x, donut_examples$example_minus_2, labels = c("x", "x - 2"))
+```
+
+`donut_compare()` draws both donuts on one scale, so their areas can be
+compared honestly. The verdict below the picture is also kept as an attribute:
+
+```{r}
+p <- donut_compare(x, donut_examples$example_minus_2)
+attr(p, "verdict")
+```
+
+## A donut with no hole
+
+Subtracting 4, the mean, leaves data with mean zero. The hole disappears and
+the whole donut is dough: a Berliner, identical to the one drawn beside the
+Example donut.
+
+```{r}
+donut_frame(donut_examples$berliner, show_sigma = FALSE)
+```
+
+## One donut per observation
+
+With `scale = "mean"`, every area is divided by `n`. The whole is the mean of
+`x^2`, the hole is the squared mean, and the dough is the population variance
+itself. The Berliner's side is then the standard deviation.
+
+```{r}
+donut_frame(x, scale = "mean")
+donut_stats(x, scale = "mean")
+```
+
+## More dough, more variance
+
+Data sets of the same size can be compared by their dough alone.
+
+```{r}
+donut_compare(donut_examples$small_mean, x, labels = c("Small mean", "Example"))
+```
+
+If the two data sets have different sizes, the donuts on the sum scale also
+grow with `n`. `donut_compare()` then gives a warning and compares the
+variances instead. Use `scale = "mean"` to compare such data sets fairly.
+
+## The coefficient of variation
+
+The ratio of the dough to the empty center is the squared coefficient of
+variation, with the
+standard deviation computed using divisor `n`:
+
+```{r}
+st <- donut_stats(x)
+st$ss_dev / (st$n * st$mean^2)   # dough / hole
+(sqrt(st$variance) / st$mean)^2  # CV squared
+```
+
+A large empty center with little dough around it means a small coefficient of
+variation.
+
+## Glaze-thin donuts
+
+When the mean is large compared with the spread, the hole fills almost the
+whole donut, and the dough is a thin glaze.
+
+```{r}
+g <- donut_examples$glaze_thin
+donut_stats(g)
+donut_frame(g, show_sigma = FALSE)
+```
+
+This is where the shortcut formula `sum(x^2) - n * mean^2` gets into trouble.
+It subtracts two huge, nearly equal areas, and the computer's rounding errors
+can swamp the thin dough. Shift the glaze-thin data far enough and the
+shortcut fails:
+
+```{r}
+far <- g + 1e8
+mean(far^2) - mean(far)^2       # the shortcut: wrong
+donut_stats(far)$variance       # the careful way: 0.02
+```
+
+`donut_stats()` always computes the dough from squared deviations, so its
+answer stays right. It also flags data that are close to this boundary, as the
+printout shows:
+
+```{r}
+donut_stats(g + 1e6)
+```
+
+The whole and the hole print as the same 13-digit number. They really are
+equal to that many digits, and the dough of 0.1 is the tiny difference between
+them. That is the shortcut formula's problem in one line.
+
+## Colors
+
+So far every donut has been plain golden, the default. Ten color schemes are
+available, by number or name:
+
+```{r}
+donut_schemes()[, c("id", "name")]
+```
+
+Schemes 3 to 6 add a stripe of pink or white glaze. It is decoration only and
+changes no area.
+
+```{r}
+donut_frame(x, color = "golden_pinkglaze")
+```
+
+Scheme 7 adds sprinkles:
+
+```{r}
+donut_frame(x, color = 7)
+```
+
+Schemes 8 to 10 are flavors, with the dough one color all over: strawberry,
+chocolate and vanilla.
+
+```{r}
+donut_frame(x, color = "chocolate")
+```
+
+Two data sets can be drawn in different colors. Use this only for genuinely
+different groups, because different colors can suggest a difference that is
+not there.
+
+```{r}
+donut_compare(x, donut_examples$example_minus_2, color = c(3, 7),
+              labels = c("Group A", "Group B"))
+```
+
+## Saving pictures
+
+The functions return ggplot objects, so `ggplot2::ggsave()` saves them. The
+labels use Greek letters, which R's basic `pdf()` device cannot draw. Save as
+PNG, or as PDF with `device = cairo_pdf`:
+
+```{r, eval = FALSE}
+p <- donut_frame(x)
+ggplot2::ggsave("donut.png", p, width = 6.5, height = 4)
+ggplot2::ggsave("donut.pdf", p, width = 6.5, height = 4, device = cairo_pdf)
+```
