@@ -51,9 +51,9 @@ The whole donut is 120, the hole is 80, and the dough is 40.
 donut_frame(x)
 ```
 
-The labels give the area and side length of the whole donut and of the hole.
+The labels give the area and side length of the whole donut and of the inner square.
 The solid square on the right is a **Berliner**, an all-dough pastry similar
-to a donut. It holds exactly the same 40 units of dough, with no hole.
+to a donut. It holds exactly the same 40 units of dough, as one solid square.
 
 ## Dividing the dough
 
@@ -72,7 +72,7 @@ by. The paper calls this choice the baking time.
 
 ## Same dough, different donuts
 
-Subtracting 2 from every value moves the mean, so the hole shrinks. The dough
+Subtracting 2 from every value moves the mean, so the empty center shrinks. The dough
 stays the same, so the variance does too.
 
 ```{r}
@@ -87,9 +87,9 @@ p <- donut_compare(x, donut_examples$example_minus_2)
 attr(p, "verdict")
 ```
 
-## A donut with no hole
+## A donut that is all dough
 
-Subtracting 4, the mean, leaves data with mean zero. The hole disappears and
+Subtracting 4, the mean, leaves data with mean zero. The empty center disappears and
 the whole donut is dough: a Berliner, identical to the one drawn beside the
 Example donut.
 
@@ -100,7 +100,7 @@ donut_frame(donut_examples$berliner, show_sigma = FALSE)
 ## One donut per observation
 
 With `scale = "mean"`, every area is divided by `n`. The whole is the mean of
-`x^2`, the hole is the squared mean, and the dough is the population variance
+`x^2`, the inner square is the squared mean, and the dough is the population variance
 itself. The Berliner's side is then the standard deviation.
 
 ```{r}
@@ -128,7 +128,7 @@ standard deviation computed using divisor `n`:
 
 ```{r}
 st <- donut_stats(x)
-st$ss_dev / (st$n * st$mean^2)   # dough / hole
+st$ss_dev / (st$n * st$mean^2)   # dough / inner square
 (sqrt(st$variance) / st$mean)^2  # CV squared
 ```
 
@@ -137,7 +137,7 @@ variation.
 
 ## Glaze-thin donuts
 
-When the mean is large compared with the spread, the hole fills almost the
+When the mean is large compared with the spread, the empty center fills almost the
 whole donut, and the dough is a thin glaze.
 
 ```{r}

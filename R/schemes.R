@@ -10,11 +10,11 @@
 #' Scheme 7, `"light_sprinkles"`, puts one row of pink sprinkles along the
 #' middle of the light dough. Sprinkles are drawn at a fixed size, so they are
 #' left out automatically when the dough is too thin to hold them. They never
-#' go in the hole.
+#' go in the empty center.
 #'
-#' Stripes and sprinkles decorate donuts with a hole only. A Berliner, a donut
-#' with no hole (data with mean zero, or the solid square drawn beside a
-#' donut), stays plain, so that no ring can be mistaken for a hole.
+#' Stripes and sprinkles decorate only donuts with an empty center. A
+#' Berliner (data with mean zero, or the solid square drawn beside a donut)
+#' stays plain, so that no ring can be mistaken for an empty center.
 #'
 #' Schemes 8 to 10 are flavors, with the dough all one color: strawberry
 #' (frosted pink), chocolate and vanilla. Vanilla is so pale that the border of

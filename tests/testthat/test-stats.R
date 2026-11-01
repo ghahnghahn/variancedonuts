@@ -6,7 +6,7 @@ test_that("donut_stats reproduces every codebook value", {
     info <- paste("dataset:", nm)
     expect_equal(st$n, 5, info = info)
     expect_equal(st$sum_x2, cb$sum_x2, tolerance = 1e-12, info = info)
-    expect_equal(inner_area(st), cb$hole, tolerance = 1e-12, info = info)
+    expect_equal(inner_area(st), cb$inner, tolerance = 1e-12, info = info)
     expect_equal(st$ss_dev, cb$ss, tolerance = 1e-10, info = info)
     expect_equal(st$variance, cb$var, tolerance = 1e-10, info = info)
     expect_equal(st$ss_dev / (st$n - 1), cb$s2, tolerance = 1e-10, info = info)
@@ -82,7 +82,7 @@ test_that("constant data: dough is exactly zero", {
   expect_gte(st$ss_dev, 0)
 })
 
-test_that("mean zero: no hole (the Berliner)", {
+test_that("mean zero: the Berliner", {
   st <- donut_stats(c(-8, -2, 0, 2, 8))
   expect_equal(st$side_inner, 0); expect_equal(st$sum_x2, st$ss_dev)
 })

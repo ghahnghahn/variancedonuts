@@ -5,9 +5,9 @@ test_that("kappa^2 = whole / dough = 1 + 1/CV^2 (divisor n)", {
     st <- donut_stats(codebook[[nm]]$x)
     cv2 <- st$variance / st$mean^2
     expect_equal(kappa2(st), 1 + 1 / cv2, tolerance = 1e-10, info = nm)
-    expect_equal(st$ss_dev / inner_area(st), cv2, tolerance = 1e-10, info = nm)  # dough / hole
+    expect_equal(st$ss_dev / inner_area(st), cv2, tolerance = 1e-10, info = nm)  # dough / inner square
   }
-  expect_equal(kappa2(donut_stats(codebook$berliner$x)), 1)     # no hole: perfectly conditioned
+  expect_equal(kappa2(donut_stats(codebook$berliner$x)), 1)     # mean zero: perfectly conditioned
 })
 
 test_that("kappa^2 values used in the paper's table", {

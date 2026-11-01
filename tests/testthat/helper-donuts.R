@@ -2,11 +2,11 @@
 # Expected values come from the project codebook (02_data/codebook.md).
 
 codebook <- list(
-  example          = list(x = c(1, 2, 3, 5, 9),           sum_x2 = 120,   hole = 80,    ss = 40,  var = 8,    s2 = 10),
-  example_plus_100 = list(x = c(1, 2, 3, 5, 9) + 100,     sum_x2 = 54120, hole = 54080, ss = 40,  var = 8,    s2 = 10),
-  small_mean       = list(x = c(-4, -2, 0, 2, 9),         sum_x2 = 105,   hole = 5,     ss = 100, var = 20,   s2 = 25),
-  berliner         = list(x = c(-8, -2, 0, 2, 8),         sum_x2 = 136,   hole = 0,     ss = 136, var = 27.2, s2 = 34),
-  glaze_thin       = list(x = c(3.8, 3.9, 4.0, 4.1, 4.2), sum_x2 = 80.1,  hole = 80,    ss = 0.1, var = 0.02, s2 = 0.025)
+  example          = list(x = c(1, 2, 3, 5, 9),           sum_x2 = 120,   inner = 80,    ss = 40,  var = 8,    s2 = 10),
+  example_plus_100 = list(x = c(1, 2, 3, 5, 9) + 100,     sum_x2 = 54120, inner = 54080, ss = 40,  var = 8,    s2 = 10),
+  small_mean       = list(x = c(-4, -2, 0, 2, 9),         sum_x2 = 105,   inner = 5,     ss = 100, var = 20,   s2 = 25),
+  berliner         = list(x = c(-8, -2, 0, 2, 8),         sum_x2 = 136,   inner = 0,     ss = 136, var = 27.2, s2 = 34),
+  glaze_thin       = list(x = c(3.8, 3.9, 4.0, 4.1, 4.2), sum_x2 = 80.1,  inner = 80,    ss = 0.1, var = 0.02, s2 = 0.025)
 )
 
 # all text labels a plot actually renders (forces the plot to build)
@@ -51,7 +51,7 @@ inner_area <- function(st) st$n * st$mean^2
 kappa2    <- function(st) st$sum_x2 / st$ss_dev     # Chan, Golub & LeVeque eq. 2.1, squared
 rel_err   <- function(a, b) abs(a - b) / abs(b)
 
-# scheme colours; the "white" stripe is cream so it never merges with the hole
+# scheme colours; the "white" stripe is cream so it never merges with the empty center
 PINK <- "#F4A6B8"; WHITE <- "#FFF2E4"; GOLD <- "#E3B072"; LIGHT <- "#F2D6AF"; CRUST <- "#9C6430"
 
 # label symbols, written as escapes so the test files stay ASCII

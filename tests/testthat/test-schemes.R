@@ -43,7 +43,7 @@ test_that("color = 1: golden dough, crust edge drawn last, no stripe", {
   expect_equal(r$fill[1], GOLD)                       # dough fill first
   expect_true(is.na(r$fill[2]) && r$colour[2] == CRUST) # crust outline drawn over it
   expect_false(any(r$fill %in% c(PINK, WHITE)))      # the empty center is white fill, not a stripe
-  expect_equal(nrow(r), 3)                            # fill, outline, hole
+  expect_equal(nrow(r), 3)                            # fill, outline, empty center
 })
 
 test_that("stripe sits in the middle third of the dough band (Example)", {
@@ -79,7 +79,7 @@ test_that("light schemes have no crust edge", {
   expect_false(any(r$colour == CRUST, na.rm = TRUE))
 })
 
-test_that("no hole (mean 0): a Berliner stays plain, with no stripe or sprinkles", {
+test_that("mean 0: a Berliner stays plain, with no stripe or sprinkles", {
   # package only (user, 2026-10-17); the paper's listing stripes this donut
   for (x in list(codebook$berliner$x, codebook$example$x - 4)) {
     for (i in 3:7) {

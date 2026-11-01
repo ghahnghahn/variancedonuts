@@ -1,9 +1,9 @@
-# A square of dough at (x0, y0) with side s; `inner` is the side of the hole
+# A square of dough at (x0, y0) with side s; `inner` is the side of the empty center
 # drawn on top (0 if solid). A stripe is a ring through the middle third of the
 # dough. Sprinkles are one dotted row along the middle of the dough. The crust
-# edge is drawn last so nothing covers it. Only donuts with a hole are
-# decorated: a Berliner (no hole) stays plain, because a ring on solid dough
-# would look like a hole (user, 2026-10-17).
+# edge is drawn last so nothing covers it. Only donuts with an empty center
+# are decorated: a Berliner (solid dough) stays plain, because a ring on solid
+# dough would look like an empty center (user, 2026-10-17).
 # `ref` is the side of the largest donut in the picture. Sprinkle dots have a
 # fixed size in mm, so they are skipped when the dough band is under 6% of
 # `ref`: on thin or tiny dough they would overflow and make it look bigger.
@@ -32,9 +32,9 @@ dough_square <- function(p, x0, y0, s, inner, sch, filled = TRUE, ref = s) {
 
 #' Draw one square donut
 #'
-#' Draws the whole donut (area `sum(x^2)`), the hole (area `n * mean^2`) and
+#' Draws the whole donut (area `sum(x^2)`), the inner square (area `n * mean^2`) and
 #' the dough between them (area `sum((x - mean)^2)`), all to scale. Beside it,
-#' the same dough can be shown as a Berliner: a solid square with no hole.
+#' the same dough can be shown as a Berliner: one solid square of dough.
 #' Below it, the dough is
 #' divided by `n` and by `n - 1` to give the two variances.
 #'
@@ -45,11 +45,11 @@ dough_square <- function(p, x0, y0, s, inner, sch, filled = TRUE, ref = s) {
 #' @param fill_dough,edge_dough Optional colors that override the scheme's
 #'   dough fill and crust outline.
 #' @param show_sigma Draw a Berliner beside the donut: the same dough as a
-#'   solid square with no hole. On the mean scale its side is the standard
+#'   solid square. On the mean scale its side is the standard
 #'   deviation.
 #' @param divide_dough Sum scale only: add the line dividing the dough by `n`
 #'   (population variance) and by `n - 1` (sample variance).
-#' @param show_sides Label the side lengths of the whole and the hole.
+#' @param show_sides Label the side lengths of the whole donut and the inner square.
 #' @param show_identity Print the identity, for example
 #'   "whole = hole + dough: 120 = 80 + 40", below the donut.
 #'
@@ -63,7 +63,7 @@ dough_square <- function(p, x0, y0, s, inner, sch, filled = TRUE, ref = s) {
 #' x <- c(1, 2, 3, 5, 9)
 #' p <- donut_frame(x)
 #' p_mean <- donut_frame(x, scale = "mean")
-#' p_berliner <- donut_frame(x - 4)    # mean zero: a donut with no hole
+#' p_berliner <- donut_frame(x - 4)    # mean zero: a Berliner
 #' if (interactive()) p
 #' @export
 donut_frame <- function(x, scale = c("sum", "mean"), dough_mode = TRUE,
@@ -76,7 +76,7 @@ donut_frame <- function(x, scale = c("sum", "mean"), dough_mode = TRUE,
   s <- st$side_outer; h <- st$side_inner; sig <- st$side_dough
   tsz <- 3.6; dg <- side_digits(s, h)
   p <- dough_square(ggplot(), 0, 0, s, h, sch, dough_mode)
-  if (h > 1e-12) {                                   # the hole
+  if (h > 1e-12) {                                   # the empty center
     hc <- s / 2
     ib <- inner_border(sch)
     p <- p + annotate("rect", xmin = hc - h/2, xmax = hc + h/2,

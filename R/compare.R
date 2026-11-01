@@ -20,8 +20,8 @@
 #'   different colors can suggest a difference, and lighter fills can look
 #'   slightly larger.
 #' @inheritParams donut_frame
-#' @param show_sigma Draw a Berliner beside each donut: its dough as a solid
-#'   square with no hole.
+#' @param show_sigma Draw a Berliner beside each donut: its dough as one
+#'   solid square.
 #' @param show_names Show the names above the donuts.
 #' @param show_verdict Show the verdict line below the donuts.
 #'

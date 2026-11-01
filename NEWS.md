@@ -4,7 +4,7 @@ First release, to accompany the paper "Oh doughnuts, it's the variance!".
 
 ## Functions
 
-* `donut_stats()` returns the whole, the hole, the dough and the side lengths,
+* `donut_stats()` returns the whole donut, the inner square, the dough and the side lengths,
   computing the dough from squared deviations so it stays accurate. It prints
   a short summary and flags glaze-thin data near the numerical boundary.
 * `donut_frame()` draws one donut, with an optional Berliner (the same dough
@@ -29,5 +29,5 @@ The numbers are identical. The differences are in names and decoration:
 * Color schemes 8 to 10 are flavors: `"strawberry"`, `"chocolate"` and
   `"vanilla"`. Vanilla draws the border of its empty center in its crust color.
 * `donut_compare(color = c(3, 7))` colors the two donuts differently.
-* A Berliner (a donut with no hole) is never striped or sprinkled.
+* A Berliner (an all-dough square) is never striped or sprinkled.
 * The tiny-donut note ends "(subject to screen resolution)".

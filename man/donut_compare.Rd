@@ -29,8 +29,8 @@ for the per-observation donut.}
 \item{dough_mode}{\code{TRUE} (default) fills the dough. \code{FALSE} draws outlines
 only, like a picture frame.}
 
-\item{show_sigma}{Draw a Berliner beside each donut: its dough as a solid
-square with no hole.}
+\item{show_sigma}{Draw a Berliner beside each donut: its dough as one
+solid square.}
 
 \item{color}{Color scheme, by number or name (see \code{\link[=donut_schemes]{donut_schemes()}}). One
 scheme is used for both donuts. Give two, for example \code{c(3, 7)}, to color

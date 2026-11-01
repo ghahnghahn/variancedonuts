@@ -32,13 +32,13 @@ only, like a picture frame.}
 dough fill and crust outline.}
 
 \item{show_sigma}{Draw a Berliner beside the donut: the same dough as a
-solid square with no hole. On the mean scale its side is the standard
+solid square. On the mean scale its side is the standard
 deviation.}
 
 \item{divide_dough}{Sum scale only: add the line dividing the dough by \code{n}
 (population variance) and by \code{n - 1} (sample variance).}
 
-\item{show_sides}{Label the side lengths of the whole and the hole.}
+\item{show_sides}{Label the side lengths of the whole donut and the inner square.}
 
 \item{show_identity}{Print the identity, for example
 "whole = hole + dough: 120 = 80 + 40", below the donut.}
@@ -47,9 +47,9 @@ deviation.}
 A ggplot object.
 }
 \description{
-Draws the whole donut (area \code{sum(x^2)}), the hole (area \code{n * mean^2}) and
+Draws the whole donut (area \code{sum(x^2)}), the inner square (area \code{n * mean^2}) and
 the dough between them (area \code{sum((x - mean)^2)}), all to scale. Beside it,
-the same dough can be shown as a Berliner: a solid square with no hole.
+the same dough can be shown as a Berliner: one solid square of dough.
 Below it, the dough is
 divided by \code{n} and by \code{n - 1} to give the two variances.
 }
@@ -63,6 +63,6 @@ Save with \code{ggplot2::ggsave("donut.pdf", p, device = cairo_pdf)}, or as PNG.
 x <- c(1, 2, 3, 5, 9)
 p <- donut_frame(x)
 p_mean <- donut_frame(x, scale = "mean")
-p_berliner <- donut_frame(x - 4)    # mean zero: a donut with no hole
+p_berliner <- donut_frame(x - 4)    # mean zero: a Berliner
 if (interactive()) p
 }

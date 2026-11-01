@@ -42,7 +42,7 @@ donut_frame(x)                                   # one donut
 donut_compare(x, x - 2, labels = c("x", "x - 2")) # two donuts, one scale
 ```
 
-Shifting the data changes the hole but not the dough, so the variance is
+Shifting the data changes the inner square but not the dough, so the variance is
 unchanged:
 
 ![Same dough, different donuts](man/figures/README-compare.png)

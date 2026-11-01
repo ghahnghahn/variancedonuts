@@ -21,11 +21,11 @@ test_that("sprinkles: one dotted pink loop along the middle of the dough", {
   expect_equal(range(pa$y), c(a, s - a), tolerance = 1e-12)
 })
 
-test_that("sprinkles never go in the hole", {
+test_that("sprinkles never go in the empty center", {
   for (nm in c("example", "small_mean")) {
     st <- donut_stats(codebook[[nm]]$x); s <- st$side_outer; h <- st$side_inner
     pa <- plot_paths(donut_frame(codebook[[nm]]$x, color = 7, show_sigma = FALSE))
-    # every point lies outside the hole: at least one coordinate beyond its edge
+    # every point lies outside the empty center: at least one coordinate beyond its edge
     out_x <- pa$x < (s - h) / 2 | pa$x > (s + h) / 2
     out_y <- pa$y < (s - h) / 2 | pa$y > (s + h) / 2
     expect_true(all(out_x | out_y), info = nm)

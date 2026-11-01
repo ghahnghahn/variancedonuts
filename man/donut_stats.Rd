@@ -22,7 +22,7 @@ A list of class \code{donut_stats} with elements \code{n}, \code{mean}, \code{E_
 and \code{near_boundary}. Printing it shows a short summary.
 }
 \description{
-Computes the whole donut, the hole and the dough for a numeric vector, with
+Computes the whole donut, the inner square and the dough for a numeric vector, with
 the side lengths used to draw them. The dough is computed from squared
 deviations about the mean (two passes over the data), so it stays accurate
 even when the mean is very large relative to the spread.
