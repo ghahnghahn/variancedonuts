@@ -1,6 +1,6 @@
 Package: variancedonuts
 Title: Square-Donut Pictures of the Variance
-Version: 0.1.0
+Version: 0.1.0.9000
 Authors@R: 
     person("Eugene D.", "Hahn", , "edhahn@salisbury.edu", role = c("aut", "cre", "cph"))
 Description: Draws the identity sum(x^2) = n * mean^2 + sum((x - mean)^2)

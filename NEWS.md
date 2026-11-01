@@ -1,3 +1,5 @@
+# variancedonuts (development version)
+
 # variancedonuts 0.1.0
 
 First release, to accompany the paper "Oh doughnuts, it's the variance!".
