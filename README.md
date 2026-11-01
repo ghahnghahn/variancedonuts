@@ -2,6 +2,7 @@
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/ghahnghahn/variancedonuts/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ghahnghahn/variancedonuts/actions/workflows/R-CMD-check.yaml)
+[![DOI](https://zenodo.org/badge/1424814967.svg)](https://doi.org/10.5281/zenodo.23862390)
 <!-- badges: end -->
 
 Square-donut pictures of the variance.
@@ -67,6 +68,16 @@ The labels use Greek letters, which R's basic `pdf()` device cannot draw. Use
 `ggplot2::ggsave("donut.pdf", p, device = cairo_pdf)`, or save as PNG.
 
 ## Citation
+
+To cite the package, run `citation("variancedonuts")`, or use:
+
+Hahn, E. D. (2026). variancedonuts: Square-Donut Pictures of the Variance.
+R package version 0.1.0. https://doi.org/10.5281/zenodo.23862391
+
+The DOI https://doi.org/10.5281/zenodo.23862390 always points to the latest
+version.
+
+The accompanying paper:
 
 Hahn, E. D. Oh doughnuts, it's the variance! A visual metaphor for the
 variance, standard deviation, and related quantities. Preprint, arXiv.

@@ -1,0 +1,13 @@
+bibentry(
+  bibtype = "Manual",
+  title   = "{variancedonuts}: Square-Donut Pictures of the Variance",
+  author  = person("Eugene D.", "Hahn"),
+  year    = "2026",
+  note    = "R package version 0.1.0",
+  doi     = "10.5281/zenodo.23862391",
+  url     = "https://github.com/ghahnghahn/variancedonuts",
+  textVersion = paste(
+    "Hahn, E. D. (2026). variancedonuts: Square-Donut Pictures of the Variance.",
+    "R package version 0.1.0. doi:10.5281/zenodo.23862391"
+  )
+)
